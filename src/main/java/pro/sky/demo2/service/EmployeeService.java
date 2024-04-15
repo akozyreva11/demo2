@@ -7,7 +7,8 @@ import pro.sky.demo2.exception.EmployeeAlreadyAddedException;
 import pro.sky.demo2.exception.EmployeeNotFoundException;
 import pro.sky.demo2.exception.EmployeeStorageIsFullException;
 
-import java.util.List;
+import java.util.Collection;
+
 @Service
 public interface EmployeeService {
 
@@ -19,7 +20,7 @@ public interface EmployeeService {
     //Найти сотрудника.
     Employee find(Employee employee) throws EmployeeStorageIsFullException;
 
-    List<Employee> getAll();
+    Collection<Employee> getAll();
 
 
 }

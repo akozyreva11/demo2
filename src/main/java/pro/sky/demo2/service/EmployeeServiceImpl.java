@@ -6,67 +6,49 @@ import pro.sky.demo2.exception.EmployeeAlreadyAddedException;
 import pro.sky.demo2.exception.EmployeeNotFoundException;
 import pro.sky.demo2.exception.EmployeeStorageIsFullException;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
-    List<Employee> employees = new ArrayList<>(List.of(
-            new Employee(
-                    "Иван",
-                    "Иванов"
-            ),
-            new Employee(
-                    "Семён",
-                    "Петров"
-            ),
-            new Employee(
-                    "Федя",
-                    "Фёдоров"
-            ),
-            new Employee(
-                    "Алексей",
-                    "Сидоров"
-            )
-    ));
 
-    //Добавить сотрудника.
 
-    @Override
-    public Employee add(Employee employee) {
-        final int max = 3;
-        if (max > employees.size()) {
-            throw new EmployeeStorageIsFullException("ошибка, значений уже слишком много");
-        }
-        if (employees.contains(employee)) {
-            throw new EmployeeNotFoundException("такой сотрудник уже найден");
-        }
-         employees.add(employee);
-        return employee;
+    Map<String, Employee> employees;
+
+    public EmployeeServiceImpl() {this.employees = new HashMap<>();
     }
 
     //Удалить сотрудника.
     @Override
     public Employee remove(Employee employee) throws EmployeeNotFoundException {
-        employees.remove(employee);
+        employees.remove(employee.getSecondyName());
         return employee;
     }
-
-    //Найти сотрудника.
     @Override
-    public Employee find(Employee employee) throws EmployeeAlreadyAddedException {
-        if (employees.contains(employee)) {
-            return employee;
+    public Employee add(Employee employee) throws EmployeeNotFoundException {
+        if (employees.size() < 3) {
+            employees.put(employee.getSecondyName(), employee);
+            return (employee);
         } else {
-            throw new EmployeeAlreadyAddedException("ошибка ,такого чувака нет");
-
+            throw new EmployeeStorageIsFullException("ошибка, значений уже слишком много");
         }
     }
+        //Найти сотрудника.
+        @Override
+        public Employee find (Employee employee) throws EmployeeAlreadyAddedException {
+            if (employees.containsKey(employee.getSecondyName())) {
+                return employee;
+            } else {
+                throw new EmployeeAlreadyAddedException("ошибка ,такого чувака нет");
+            }
+        }
 
     @Override
-    public List<Employee> getAll() {
-        return employees;
+    public Collection<Employee> getAll() {
+        return (Collections.unmodifiableCollection(employees.values()));
     }
 }

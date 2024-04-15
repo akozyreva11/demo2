@@ -30,6 +30,10 @@ public String getSecondName() {
 public String getFirstName() {
     return firstName;
 }
+    public String getSecondyName() {
+        return firstName + " " + secondName;
+    }
+
 
 public void setSecondName(String secondName) {
     this.secondName = secondName;
