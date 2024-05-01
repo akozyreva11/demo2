@@ -9,51 +9,64 @@ import pro.sky.demo2.service.EmployeeService;
 
 import java.util.Collection;
 
-
+//http://localhost:8080/employee/add?firstName=аплпала&secondName=пдопррпдолпр&sallary=3322223&department=1
 @RestController
 @RequestMapping(path = "/employee")
 public class EmployeeControler {
-
     private final EmployeeService employeeService;
 
     public EmployeeControler(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-    @GetMapping(path = "/find")
-    //http://localhost:8080/employee/find?firstName=Иванова Иина
-    public Employee findEmployee(@RequestParam String firstName,
-                               @RequestParam String secondName) {
-        Employee employee = new Employee(
-                firstName,
-                secondName
-        );
-        return employeeService.find(employee);
-    }
+
     @GetMapping("/allEmployees")
     public Collection<Employee> getAllEmployees() {
         return employeeService.getAll();
     }
 
-
-    //http://localhost:8080/employee/add?num1=7&num2=7
-    @GetMapping(path = "/add")
-    public Employee addEmployee(@RequestParam String firstName,
-                              @RequestParam String secondName) {
-        Employee employee = new Employee(
-                firstName,
-                secondName
-        );
-        return employeeService.add(employee);
-    }
-
-    //http://localhost:8080/employee/remove?num1=7&num2=7
     @GetMapping(path = "/remove")
     public Employee removeEmployee(@RequestParam String firstName,
-                                 @RequestParam String secondName) {
+                                   @RequestParam String secondName,
+                                   @RequestParam int sallary,
+                                   @RequestParam int department) {
         Employee employee = new Employee(
                 firstName,
-                secondName
+                secondName,
+                sallary,
+                department
         );
-        return employeeService.remove(employee);
+        return employeeService.removeEmployee(firstName,secondName,sallary,department);
     }
+
+    @GetMapping(path = "/find")
+    public Employee findEmployee(@RequestParam String firstName,
+                                 @RequestParam String secondName,
+                                 @RequestParam int sallary,
+                                 @RequestParam int department) {
+        Employee employee = new Employee(
+                firstName,
+                secondName,
+                sallary,
+                department
+        );
+        return employeeService.findEmployee(firstName,secondName,sallary,department);
+    }
+
+    @GetMapping(path = "/add")
+    public Employee addEmployee(@RequestParam String firstName,
+                                @RequestParam String secondName,
+                                @RequestParam int sallary,
+                                @RequestParam int department) {
+        Employee employee = new Employee(
+                firstName,
+                secondName,
+                sallary,
+                department
+        );
+        return employeeService.addEmployee(firstName,secondName,sallary,department);
+    }
+
+    @GetMapping(path = "/all")
+    public Collection<Employee> all(){
+    return employeeService.getAll();  }
 }

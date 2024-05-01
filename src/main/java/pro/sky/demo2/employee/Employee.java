@@ -5,7 +5,29 @@ import java.util.Objects;
 public class Employee {
 
 
-private String firstName;
+    private String firstName;
+    private String secondName;
+    private int sallary;
+    private int department;
+
+
+
+
+    public void setSallary(int sallary) {
+        this.sallary = sallary;
+    }
+
+    public void setDepartment(int department) {
+        this.department = department;
+    }
+
+    public int getSallary() {
+        return sallary;
+    }
+
+    public int getDepartment() {
+        return department;
+    }
 
     @Override
     public final boolean equals(Object o) {
@@ -16,42 +38,45 @@ private String firstName;
         return Objects.equals(getFirstName(), employee.getFirstName()) && Objects.equals(getSecondName(), employee.getSecondName());
     }
 
-    private String secondName;
+    public Employee(String firstName, String secondName, int sallary, int department) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.sallary = sallary;
+        this.department = department;
+    }
 
-public Employee(String firstName, String secondName) {
-    this.firstName = firstName;
-    this.secondName = secondName;
-}
-
-public String getSecondName() {
-    return secondName;
-}
-
-public String getFirstName() {
-    return firstName;
-}
-    public String getSecondyName() {
+    public String getFullName() {
         return firstName + " " + secondName;
+    }
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public String getFirstName() {
+        return firstName;
     }
 
 
-public void setSecondName(String secondName) {
-    this.secondName = secondName;
-}
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
 
-public void setFirstName(String firstName) {
-    this.firstName = firstName;
-}
-@Override
-public String toString() {
-    return "EmployeeService{" +
-            "firstName='" + firstName + '\'' +
-            ", secondName='" + secondName + '\'' +
-            '}';
-}
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-@Override
-public int hashCode() {
-    return Objects.hash(firstName, secondName);
-}
+    @Override
+    public String toString() {
+        return "EmployeeService{" +
+                "firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", sallary='" + sallary + '\'' +
+                ", department='" + department + '\'' +
+                '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, secondName, sallary, department);
+    }
 }

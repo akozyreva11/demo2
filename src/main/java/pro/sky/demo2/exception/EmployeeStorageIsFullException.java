@@ -5,8 +5,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
 public class EmployeeStorageIsFullException extends  RuntimeException{
-    public EmployeeStorageIsFullException(String message){
+    private static final String message="Такая уже есть";
+
+    public EmployeeStorageIsFullException(){
         super(message);
+        
     }
 
 }
