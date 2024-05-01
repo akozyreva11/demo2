@@ -2,6 +2,8 @@ package pro.sky.demo2.employee;
 
 import java.util.Objects;
 
+import static org.springframework.util.StringUtils.capitalize;
+
 public class Employee {
 
 
@@ -9,9 +11,6 @@ public class Employee {
     private String secondName;
     private int sallary;
     private int department;
-
-
-
 
     public void setSallary(int sallary) {
         this.sallary = sallary;
@@ -39,8 +38,8 @@ public class Employee {
     }
 
     public Employee(String firstName, String secondName, int sallary, int department) {
-        this.firstName = firstName;
-        this.secondName = secondName;
+        this.firstName = capitalize(firstName.toLowerCase());
+        this.secondName = capitalize(secondName.toLowerCase());
         this.sallary = sallary;
         this.department = department;
     }
