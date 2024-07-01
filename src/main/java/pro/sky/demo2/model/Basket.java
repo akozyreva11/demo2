@@ -5,14 +5,13 @@ import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-@Component
-public class Bascet {
 
-    List<Integer> Bascet;
+@Component
+public class Basket {
 
     private final List<Integer> bascet;
 
-    public Bascet() {
+    public Basket() {
 
         this.bascet = new ArrayList<>();
 
