@@ -1,7 +1,7 @@
 package pro.sky.demo2.service;
 
 import org.springframework.stereotype.Service;
-import pro.sky.demo2.NullError.NullError;
+import pro.sky.demo2.NullError.DivisionByZeroException;
 
 @Service
 public class CalculatorServiceImpl implements CalculatorService  {
@@ -26,7 +26,7 @@ public class CalculatorServiceImpl implements CalculatorService  {
     @Override
     public int divideCalculator(int num1, int num2)  {
         if (num2 == 0) {
-           throw new NullError();
+           throw new DivisionByZeroException();
         }
         return num1 / num2;
     }

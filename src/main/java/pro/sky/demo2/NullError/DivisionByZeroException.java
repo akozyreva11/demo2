@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 
-public class NullError extends IllegalArgumentException{
+public class DivisionByZeroException extends IllegalArgumentException{
 
-    public NullError() {
-        super("Делить на 0 нельзя");
+    public DivisionByZeroException() {
+        super("Division by zero is not allowed");
     }
 }

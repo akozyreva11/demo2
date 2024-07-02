@@ -8,11 +8,11 @@ import pro.sky.demo2.service.CalculatorService;
 
 @RestController
 @RequestMapping(path = "/calculator")
-public class СalculatorControler {
+public class CalculatorControler {
 
     private final CalculatorService calculatorService;
 
-    public СalculatorControler(CalculatorService calculatorService) {
+    public CalculatorControler(CalculatorService calculatorService) {
         this.calculatorService = calculatorService;
     }
 
