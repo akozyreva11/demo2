@@ -2,6 +2,7 @@ package pro.sky.demo2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import pro.sky.demo2.NullError.DivisionByZeroException;
 import pro.sky.demo2.service.CalculatorService;
 import pro.sky.demo2.service.CalculatorServiceImpl;
 
@@ -14,69 +15,59 @@ class Demo2ApplicationTests {
 
 
     @Test
-    public void shouldAddTwoNumbersCorrectly() {
+    public void must_add_two_numbers_correctly() {
         int actual = testt.plusCalculator(8, 9);
-        int sum = 8 + 9;
-        assertEquals(actual, sum);
-
+        assertEquals(actual, 17);
     }
 
     @Test
-    public void	mustaddtwonumbersincorrectly() {
+    public void	must_add_two_numbers_incorrectly() {
         int actual = testt.plusCalculator(9, 9);
-        int sum = 0 + 9;
-        assertNotEquals(actual, sum);
+        assertNotEquals(actual, 9);
     }
 
     @Test
-    public void mustsubtracttwonumberscorrectly() {
+    public void must_subtract_two_numbers_correctly() {
         int actual = testt.minusCalculator(9, 9);
-        int sum = 9 - 9;
-        assertEquals(actual, sum);
+        assertEquals(actual, 0);
 
     }
 
     @Test
-    public void mustsubtracttwonumbersincorrectly() {
+    public void must_subtract_two_numbers_incorrectly() {
         int actual = testt.minusCalculator(9, 9);
-        int sum = 0 - 9;
-        assertNotEquals(actual, sum);
+        assertNotEquals(actual, -9);
     }
 
     @Test
-    public void mustcorrectlymultiplytwonumbers() {
+    public void must_correctly_multiply_two_numbers() {
         int actual = testt.multiplyCalculator(9, 9);
-        int sum = 9 * 9;
-        assertEquals(actual, sum);
+        assertEquals(actual, 81);
 
     }
 
     @Test
-    public void mustincorrectlymultiplytwonumbers() {
+    public void must_incorrectly_multiply_two_numbers() {
         int actual = testt.multiplyCalculator(9, 9);
-        int sum = 0 * 9;
-        assertNotEquals(actual, sum);
+        assertNotEquals(actual, 0);
     }
 
     @Test
-    public void mustcorrectlydividetwonumbers() {
-        int actual = testt.divideCalculator(9, 9);
-        int sum = 9 / 9;
-        assertEquals(actual, sum);
+    public void must_correctly_divide_two_numbers() {
+        double actual = testt.divideCalculator(3, 2);
+        assertEquals(actual, 1.5);
 
     }
 
     @Test
-    public void mustincorrectlydividetwonumbers() {
-        int actual = testt.divideCalculator(9, 9);
-        int sum = 1 / 9;
-        assertNotEquals(actual, sum);
+    public void must_incorrectly_divide_two_numbers() {
+        double actual = testt.divideCalculator(9, 9);
+        assertNotEquals(actual, 2);
     }
 
     @Test
     public void testExpectedException() {
-
-        assertThrows(IllegalArgumentException.class, () -> testt.divideCalculator(0, 0));
+        assertThrows(DivisionByZeroException.class, () -> testt.divideCalculator(0, 0));
     }
 }
 

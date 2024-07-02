@@ -7,6 +7,6 @@ public interface CalculatorService{
 
     int multiplyCalculator(int num1, int num2);
 
-    int divideCalculator(int num1, int num2);
+    double divideCalculator(double num1, double num2);
 
 }

@@ -43,7 +43,7 @@ public class CalculatorControler {
 
     // http://localhost:8080/calculator/divide?num1=9&num2=9
     @GetMapping(path = "/divide")
-    public String divideCalculator(@RequestParam int num1, int num2) {
+    public String divideCalculator(@RequestParam double num1, double num2) {
         return String.valueOf(calculatorService.divideCalculator(num1, num2));
     }
 }

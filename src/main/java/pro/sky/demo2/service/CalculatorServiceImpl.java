@@ -24,7 +24,7 @@ public class CalculatorServiceImpl implements CalculatorService  {
     }
 
     @Override
-    public int divideCalculator(int num1, int num2)  {
+    public double divideCalculator(double num1, double num2)  {
         if (num2 == 0) {
            throw new DivisionByZeroException();
         }
