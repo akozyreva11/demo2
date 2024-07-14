@@ -19,12 +19,6 @@ public class EmployeeServiceImpl implements EmployeeService {
         employees = new HashMap<>();
     }
 
-    private boolean validDateInput(String firstName, String secondName) {
-        if (!isAlpha(firstName) && isAlpha(secondName)) ;
-        {
-            throw new EmployeeInvalidExeption();
-        }
-    }
 
     @Override
     public Collection<Employee> getAll() {
@@ -33,7 +27,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee findEmployee(String firstName, String secondName, int sallary, int department) {
-        validDateInput(firstName, secondName);
+        if (!isAlpha(firstName) && !isAlpha(secondName))
+        {
+            throw new EmployeeInvalidExeption();
+        }
         Employee employee = new Employee(firstName, secondName, sallary, department);
         if (employees.containsKey(employee.getFullName())) {
             return employees.get(employee.getFullName());
@@ -44,8 +41,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee removeEmployee(String firstName, String secondName, int sallary, int department) {
-        validDateInput(firstName, secondName);
-
+        if (!isAlpha(firstName) && !isAlpha(secondName))
+        {
+            throw new EmployeeInvalidExeption();
+        }
         Employee employee = new Employee(firstName, secondName, sallary, department);
         if (employees.containsKey(employee.getFullName())) {
             return employees.remove(employee.getFullName());
@@ -54,10 +53,12 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
 
-    @Override
-    public Employee addEmployee(String firstName, String secondName, int sallary, int department) {
-        validDateInput(firstName, secondName);
-
+@Override
+public Employee addEmployee(String firstName, String secondName, int sallary, int department) {
+    if (!isAlpha(firstName) && !isAlpha(secondName))
+    {
+        throw new EmployeeInvalidExeption();
+    }
         Employee employee = new Employee(firstName, secondName, sallary, department);
         if (employees.containsKey(employee.getFullName())) {
             throw new EmployeeStorageIsFullException();

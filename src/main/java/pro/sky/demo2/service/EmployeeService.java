@@ -9,6 +9,7 @@ import java.util.Collection;
 @Service
 public interface EmployeeService {
 
+
     Collection<Employee> getAll();
 
     Employee findEmployee(String firstName, String secondName, int sallary, int department);
