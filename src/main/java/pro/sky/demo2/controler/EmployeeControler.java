@@ -35,7 +35,7 @@ public class EmployeeControler {
                 sallary,
                 department
         );
-        return employeeService.removeEmployee(firstName,secondName,sallary,department);
+        return employeeService.removeEmployee(firstName, secondName, sallary, department);
     }
 
     @GetMapping(path = "/find")
@@ -49,7 +49,7 @@ public class EmployeeControler {
                 sallary,
                 department
         );
-        return employeeService.findEmployee(firstName,secondName,sallary,department);
+        return employeeService.findEmployee(firstName, secondName, sallary, department);
     }
 
     @GetMapping(path = "/add")
@@ -63,10 +63,11 @@ public class EmployeeControler {
                 sallary,
                 department
         );
-        return employeeService.addEmployee(firstName,secondName,sallary,department);
+        return employeeService.addEmployee(firstName, secondName, sallary, department);
     }
 
     @GetMapping(path = "/all")
-    public Collection<Employee> all(){
-    return employeeService.getAll();  }
+    public Collection<Employee> all() {
+        return employeeService.getAll();
+    }
 }

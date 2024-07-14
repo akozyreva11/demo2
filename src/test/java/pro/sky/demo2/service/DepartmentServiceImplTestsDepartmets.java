@@ -1,25 +1,19 @@
 package pro.sky.demo2.service;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import pro.sky.demo2.employee.Employee;
 import pro.sky.demo2.exception.EmployeeNotFoundException;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
-
 public class DepartmentServiceImplTestsDepartmets {
 
-
     private EmployeeServiceImpl employeeService;
-
     private DepartmentService departmentService;
     private List<Employee> employeeList = List.of(
             new Employee("Иванов", "Иван", 22222, 3),

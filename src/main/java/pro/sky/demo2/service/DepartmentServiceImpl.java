@@ -13,8 +13,9 @@ import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 
 @Service
-public class DepartmentServiceImpl implements DepartmentService{
+public class DepartmentServiceImpl implements DepartmentService {
     private final EmployeeServiceImpl employeeService;
+
     public DepartmentServiceImpl(EmployeeServiceImpl employeeService) {
         this.employeeService = employeeService;
     }
@@ -24,8 +25,8 @@ public class DepartmentServiceImpl implements DepartmentService{
         return employeeService
                 .getAll()
                 .stream()
-                .filter(employee -> employee.getDepartment()==department)
-                .sorted (Comparator.comparing(Employee::getFirstName).thenComparing(Employee::getSecondName))
+                .filter(employee -> employee.getDepartment() == department)
+                .sorted(Comparator.comparing(Employee::getFirstName).thenComparing(Employee::getSecondName))
                 .collect(toList());
     }
 
@@ -42,6 +43,7 @@ public class DepartmentServiceImpl implements DepartmentService{
                 .sorted(Comparator.comparing(Employee::getFirstName).thenComparing(Employee::getSecondName))
                 .collect(groupingBy(Employee::getDepartment));
     }
+
     @Override
     public Employee maxSalary(int department) {
         return employeeService.getAll()
