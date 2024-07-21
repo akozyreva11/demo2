@@ -1,16 +1,18 @@
 package pro.sky.demo2.service;
 
-import Question.Question;
+import pro.sky.demo2.question.Question;
 
 import java.util.Collection;
 
 public interface QuestionService {
 
-    int getRandomQuestion();
+    Question addQuestion(Question question);
 
-    Question add(Question question);
+    Question add(String question, String answer);
 
-    Question remove(Question question);
+    Question removeQuestion(Question question);
 
     Collection<Question> getAll();
+
+    Question getRandomQuestion();
 }

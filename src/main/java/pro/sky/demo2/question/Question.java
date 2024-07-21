@@ -1,4 +1,4 @@
-package Question;
+package pro.sky.demo2.question;
 
 import java.util.Objects;
 
@@ -11,9 +11,24 @@ public class Question {
         this.answer = answer;
     }
 
-
     public Question() {
         super();
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(String question) {
+        this.question = question;
     }
 
     @Override
@@ -38,22 +53,5 @@ public class Question {
         result = 31 * result + Objects.hashCode(getAnswer());
         return result;
     }
-
-    public String getAnswer() {
-        return answer;
-    }
-
-    public void setAnswer(String answer) {
-        this.answer = answer;
-    }
-
-    public String getQuestion() {
-        return question;
-    }
-
-    public void setQuestion(String question) {
-        this.question = question;
-    }
-
 
 }
