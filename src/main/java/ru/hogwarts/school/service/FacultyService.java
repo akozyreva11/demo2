@@ -1,39 +1,46 @@
 package ru.hogwarts.school.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
+import ru.hogwarts.school.repository.FacultyRepository;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 
+
 public class FacultyService {
 
-    private Map<Long, Faculty> facultys = new HashMap<>();
-    public long Id=1L;
+    @Autowired
+    private FacultyRepository facultyRepository;
 
-    Faculty facultq=new Faculty(1L,"фыв","вуу");
-    Faculty facultq2=new Faculty(2L,"фыв","ввуу");
-    Faculty facultq3=new Faculty(3L,"фыв","ввуу");
+    public FacultyService(FacultyRepository facultyRepository) {
+        this.facultyRepository = facultyRepository;
+    }
 
     public Faculty createFaculty(Faculty faculty) {
-        facultys.put(Id, faculty);
-        Id=Id++;
-        return faculty;
+        return facultyRepository.save(faculty);
     }
 
-    public Faculty getUserById(Long Id) {
-        return facultys.get(Id);
+    public Faculty findFaculty(long id) {
+        return facultyRepository.getById(id);
     }
 
-    public Faculty removeFaculty(Long Id, Faculty faculty) {
-        facultys.remove(Id, faculty);
-        return faculty;
+    public Faculty editFaculty(long id, Faculty faculty) {
+        return facultyRepository.save(faculty);
     }
 
-    public Faculty deleteFaculty(Long userId) {
-        return facultys.remove(Id);
+    public void deleteFaculty(long id) {
+        facultyRepository.deleteById(id);
+    }
+
+    public List<Faculty> facultyCollor(String collor) {
+        return facultyRepository.findAll().stream().
+                filter(faculty -> faculty.getColor()==collor).
+                collect(Collectors.toList());
+
     }
 
 }
