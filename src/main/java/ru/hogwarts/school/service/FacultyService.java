@@ -28,6 +28,10 @@ public class FacultyService {
         return facultyRepository.getById(id);
     }
 
+    public List <Faculty> findFacultyColor(String name) {
+        return facultyRepository.findByNameIgnoreCase(name);
+    }
+
     public Faculty editFaculty(long id, Faculty faculty) {
         return facultyRepository.save(faculty);
     }

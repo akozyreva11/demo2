@@ -20,6 +20,9 @@ public class StudentService{
     public Student createStudent(Student student) {
         return studentRepository.save(student);
     }
+    public List <Student> findAgeStudent(int age1,int age2) {
+        return  studentRepository.findByAgeBetween(age1,age2);
+    }
 
     public Student findStudent(Long id) {
         return studentRepository.getById(id);
