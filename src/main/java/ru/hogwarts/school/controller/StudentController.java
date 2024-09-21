@@ -18,13 +18,22 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @PostMapping
+    @PostMapping("addStudent")
     public ResponseEntity<Student> create(@RequestBody Student student) {
         Student addedStudent = studentService.createStudent(student);
         return ResponseEntity.ok(addedStudent);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("AllStudent")
+    public ResponseEntity<Student> allStudent(@PathVariable Long id) {
+        Student newStudent = studentService.findStudent(id);
+        if (newStudent == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(newStudent);
+    }
+
+    @GetMapping("find")
     public ResponseEntity<Student> getStudents(@PathVariable Long id) {
         Student newStudent = studentService.findStudent(id);
         if (newStudent == null) {
@@ -33,24 +42,28 @@ public class StudentController {
         return ResponseEntity.ok(newStudent);
     }
 
-    @PutMapping("{id}")
-    public ResponseEntity<Student> updateStudents(@RequestBody Student student, @PathVariable Long id) {
-        Student changeStudent = studentService.editStudent(id, student);
+    @GetMapping("ageRe")
+    public List <Student> findAgeStudent (@RequestParam int age1, @RequestParam int age2) {
+        return studentService.findAgeStudent(age1, age2);
+   }
+
+    @PutMapping("update")
+    public ResponseEntity<Student> updateStudents( @RequestBody Student student) {
+        Student changeStudent = studentService.editStudent(student);
         if (changeStudent == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(changeStudent);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<Student> deleteStudents(@PathVariable Long id) {
+    @DeleteMapping("delete")
+    public ResponseEntity<Student> deleteStudents(@RequestParam Long id) {
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
+    @GetMapping("studentAge")
     public List<Student> studentAge(@PathVariable Integer age) {
         return studentService.getAge(age);
     }
-
 }
