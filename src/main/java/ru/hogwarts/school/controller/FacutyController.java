@@ -24,8 +24,8 @@ public class FacutyController {
         return facultyService.createFaculty(faculty);
     }
 
-    @GetMapping("id")
-    public ResponseEntity<Faculty> getFacultyes(@PathVariable Long id) {
+    @GetMapping("findId")
+    public ResponseEntity<Faculty> getFacultyes(@RequestParam Long id) {
         Faculty newFaculty = facultyService.findFaculty(id);
         if (newFaculty == null) {
             return ResponseEntity.notFound().build();
@@ -33,23 +33,23 @@ public class FacutyController {
         return ResponseEntity.ok(newFaculty);
     }
 
-    @PutMapping("id")
-    public ResponseEntity<Faculty> updateFacultyes(@RequestBody Faculty faculty, @PathVariable Long id) {
-        Faculty changeFaculty = facultyService.editFaculty(id, faculty);
+    @PutMapping("updateFacultyes")
+    public ResponseEntity<Faculty> updateFacultyes(@RequestBody Faculty faculty) {
+        Faculty changeFaculty = facultyService.editFaculty(faculty);
         if (changeFaculty == null) {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(changeFaculty);
     }
 
-    @GetMapping ("name")
+    @GetMapping ("findColorFaculty")
     public List <Faculty> findColorFaculty (@RequestParam String name)
     {
     return facultyService.findFacultyColor(name);
     }
 
-    @GetMapping("getFacultyAll")
-    public ResponseEntity<Collection<Student>> getFacultyesByStudents(@PathVariable Long id) {
+    @GetMapping("getFacultyesByStudents")
+    public ResponseEntity<Collection<Student>> getFacultyesByStudents(@RequestParam Long id) {
         Faculty faculty = facultyService.findFaculty(id);
         if (faculty == null) {
             return ResponseEntity.notFound().build();
@@ -57,13 +57,13 @@ public class FacutyController {
         return ResponseEntity.ok(facultyService.findFaculty(id).getStudents());
     }
 
-    @DeleteMapping("id")
-    public ResponseEntity<Faculty> deleteFacultyes(@PathVariable Long id) {
+    @DeleteMapping("deleteFacultyes")
+    public ResponseEntity<Faculty> deleteFacultyes(@RequestParam Long id) {
         facultyService.deleteFaculty(id);
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping("coloradd")
+    @GetMapping("collorsOfFaculty")
     public List<Faculty> collorsOfFaculty(@RequestParam String collor) {
         return facultyService.facultyCollor(collor);
     }

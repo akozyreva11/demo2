@@ -30,7 +30,7 @@ public class StudentService{
         return studentRepository.getById(id);
     }
 
-    public Student editStudent(Long id, Student student) {
+    public Student editStudent(Student student) {
         return studentRepository.save(student);
     }
 

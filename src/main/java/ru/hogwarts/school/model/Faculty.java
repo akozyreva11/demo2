@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "facultys")
-
 public class Faculty {
 
     @Id

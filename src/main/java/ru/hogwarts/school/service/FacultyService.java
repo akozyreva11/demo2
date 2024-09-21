@@ -25,14 +25,13 @@ public class FacultyService {
     }
 
     public Faculty findFaculty(long id) {
-        return facultyRepository.getById(id);
+        return facultyRepository.findById(id).get();
     }
-
     public List <Faculty> findFacultyColor(String name) {
         return facultyRepository.findByNameIgnoreCase(name);
     }
 
-    public Faculty editFaculty(long id, Faculty faculty) {
+    public Faculty editFaculty(Faculty faculty) {
         return facultyRepository.save(faculty);
     }
 
