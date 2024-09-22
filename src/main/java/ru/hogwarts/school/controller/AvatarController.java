@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collection;
 
 @RestController
 @RequestMapping("/avatar")
@@ -26,13 +27,14 @@ public class AvatarController {
     }
 
     @GetMapping("from-db")
-    public ResponseEntity<byte[]>downloadAvatar(@PathVariable Long id) {
+    public ResponseEntity<byte[]> downloadAvatar(@PathVariable Long id) {
         Avatar avatar = avatarService.findAvatar(id);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.parseMediaType(avatar.getMediaType()));
         headers.setContentLength(avatar.getData().length);
         return ResponseEntity.status(HttpStatus.OK).headers(headers).body(avatar.getData());
     }
+
     @PostMapping(value = "studentId", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> uploadAvatar(@PathVariable Long studentId, @RequestParam MultipartFile avatar) throws IOException {
         avatarService.uploadAvatar(studentId, avatar);
@@ -40,16 +42,21 @@ public class AvatarController {
     }
 
     @GetMapping(value = "/{id}/avatar-from-file")
-    public void downloadAvatar(@PathVariable Long id, HttpServletResponse response) throws IOException{
+    public void downloadAvatar(@PathVariable Long id, HttpServletResponse response) throws IOException {
         Avatar avatar = avatarService.findAvatar(id);
         Path path = Path.of(avatar.getFilePath());
-        try(InputStream is = Files.newInputStream(path);
-            OutputStream os = response.getOutputStream();) {
+        try (InputStream is = Files.newInputStream(path);
+             OutputStream os = response.getOutputStream();) {
             response.setStatus(200);
             response.setContentType(avatar.getMediaType());
             response.setContentLength((int) avatar.getFileSize());
             is.transferTo(os);
         }
+    }
+    @GetMapping(value = "/viewAvatars")
+    public ResponseEntity<Collection<Avatar>> getAll(@RequestParam ("page") Integer pageNumber, @RequestParam ("size") Integer pageSize) {
+        Collection<Avatar> allAvatars = avatarService.getAllAvatars(pageNumber,pageSize);
+        return ResponseEntity.ok(allAvatars);
     }
 
 }

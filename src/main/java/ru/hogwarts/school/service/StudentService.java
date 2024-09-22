@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 
 @Service
-public class StudentService{
+public class StudentService {
 
     @Autowired
     private final StudentRepository studentRepository;
@@ -22,8 +22,21 @@ public class StudentService{
     public Student createStudent(Student student) {
         return studentRepository.save(student);
     }
-    public List <Student> findAgeStudent(int age1,int age2) {
-        return  studentRepository.findByAgeBetween(age1,age2);
+
+    public List<Student> findAgeStudent(int age1, int age2) {
+        return studentRepository.findByAgeBetween(age1, age2);
+    }
+
+    public int getAverageAge() {
+        return studentRepository.averageAge();
+    }
+
+    public List<Student> getLastStudents() {
+        return studentRepository.getLastStudents();
+    }
+
+    public int findStudentAll() {
+        return studentRepository.getAllByStudent();
     }
 
     public Student findStudent(Long id) {
@@ -40,7 +53,7 @@ public class StudentService{
 
     public List<Student> getAge(Integer age) {
         return studentRepository.findAll().stream().
-                filter(student -> student.getAge()==age).
+                filter(student -> student.getAge() == age).
                 collect(Collectors.toList());
     }
 

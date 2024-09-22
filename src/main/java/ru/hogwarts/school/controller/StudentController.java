@@ -43,12 +43,12 @@ public class StudentController {
     }
 
     @GetMapping("ageRe")
-    public List <Student> findAgeStudent (@RequestParam int age1, @RequestParam int age2) {
+    public List<Student> findAgeStudent(@RequestParam int age1, @RequestParam int age2) {
         return studentService.findAgeStudent(age1, age2);
-   }
+    }
 
     @PutMapping("update")
-    public ResponseEntity<Student> updateStudents( @RequestBody Student student) {
+    public ResponseEntity<Student> updateStudents(@RequestBody Student student) {
         Student changeStudent = studentService.editStudent(student);
         if (changeStudent == null) {
             return ResponseEntity.notFound().build();
@@ -65,5 +65,32 @@ public class StudentController {
     @GetMapping("studentAge")
     public List<Student> studentAge(@PathVariable Integer age) {
         return studentService.getAge(age);
+    }
+
+    @GetMapping("allStudentCount")
+    public ResponseEntity<Integer> allStudentCount() {
+        int count1 = studentService.findStudentAll();
+        if (count1 == 0) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(count1);
+    }
+
+    @GetMapping("getAverageAgeOfStudents")
+    public ResponseEntity<Integer> getAverageAgeOfStudents() {
+        int ageAverage = studentService.getAverageAge();
+        if (ageAverage == 0) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(ageAverage);
+    }
+
+    @GetMapping("getLastStudents")
+    public ResponseEntity<List<Student>> getLastStudents() {
+        List<Student> lastStudents = studentService.getLastStudents();
+        if (lastStudents.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(lastStudents);
     }
 }

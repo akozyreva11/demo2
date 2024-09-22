@@ -16,22 +16,24 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
-    @JsonProperty
-    public Faculty getFaculty() {
-        return faculty;
-    }
-    @JsonProperty
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
-    }
 
-    public Student(){
+    public Student() {
     }
 
     public Student(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
+    }
+
+    @JsonProperty
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    @JsonProperty
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 
     public Long getId() {

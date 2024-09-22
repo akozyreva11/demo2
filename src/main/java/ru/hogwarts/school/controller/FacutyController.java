@@ -42,10 +42,9 @@ public class FacutyController {
         return ResponseEntity.ok(changeFaculty);
     }
 
-    @GetMapping ("findColorFaculty")
-    public List <Faculty> findColorFaculty (@RequestParam String name)
-    {
-    return facultyService.findFacultyColor(name);
+    @GetMapping("findColorFaculty")
+    public List<Faculty> findColorFaculty(@RequestParam String name) {
+        return facultyService.findFacultyColor(name);
     }
 
     @GetMapping("getFacultyesByStudents")

@@ -27,7 +27,8 @@ public class FacultyService {
     public Faculty findFaculty(long id) {
         return facultyRepository.findById(id).get();
     }
-    public List <Faculty> findFacultyColor(String name) {
+
+    public List<Faculty> findFacultyColor(String name) {
         return facultyRepository.findByNameIgnoreCase(name);
     }
 
@@ -41,7 +42,7 @@ public class FacultyService {
 
     public List<Faculty> facultyCollor(String collor) {
         return facultyRepository.findAll().stream().
-                filter(faculty -> faculty.getColor()==collor).
+                filter(faculty -> faculty.getColor() == collor).
                 collect(Collectors.toList());
 
     }
