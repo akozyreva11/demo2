@@ -69,7 +69,7 @@ public class StudentController {
 
     @GetMapping("allStudentCount")
     public ResponseEntity<Integer> allStudentCount() {
-        int count1 = studentService.findStudentAll();
+        int count1 = studentService.findStudentr();
         if (count1 == 0) {
             return ResponseEntity.notFound().build();
         }

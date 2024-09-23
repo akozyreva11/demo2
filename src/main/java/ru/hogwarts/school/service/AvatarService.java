@@ -1,6 +1,8 @@
 package ru.hogwarts.school.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.hogwarts.school.model.Avatar;
@@ -11,16 +13,16 @@ import ru.hogwarts.school.repository.StudentRepository;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
 @Service
 public class AvatarService {
-    private final StudentService studentService;
-    private final AvatarRepository avatarRepository;
     @Value("${students.avatars.dir.path}")
     private String avatarsDir;
+
+    private final StudentService studentService;
+    private final AvatarRepository avatarRepository;
 
     public AvatarService(StudentService studentService, AvatarRepository avatarRepository, StudentRepository studentRepository) {
         this.studentService = studentService;
@@ -51,15 +53,15 @@ public class AvatarService {
         avatarRepository.save(avatar);
     }
 
-    private String getExtensions(String fileName) {
+    private String getExtensions(String fileName)
+    {
         return fileName.substring(fileName.lastIndexOf(".") + 1);
     }
-
     public Avatar findAvatar(Long studentId) {
         return avatarRepository.findByStudentId(studentId).orElseThrow();
     }
 
-    public Collection<Avatar> getAllAvatars(Integer pageNumber, Integer pageSize) {
-        return avatarRepository.getAll(pageNumber, pageSize);
+    public Page<Avatar> findPageAvatar(Integer sizeA, Integer sizeB) {
+        return avatarRepository.findAll(PageRequest.of(sizeA,sizeB));
     }
 }
