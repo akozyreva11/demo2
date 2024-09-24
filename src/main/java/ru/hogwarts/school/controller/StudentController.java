@@ -93,4 +93,28 @@ public class StudentController {
         }
         return ResponseEntity.ok(lastStudents);
     }
+
+
+    @GetMapping("getStudentsNameFirstA")
+    public ResponseEntity<List<String>> getStudentsNameStartsWith() {
+        List<String> allfioA = studentService.getStudentsNameFirstA();
+        if (allfioA.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(allfioA);
+    }
+
+    @GetMapping("getAverageAgeStudents")
+    public ResponseEntity<Double> getAverageAgeStudents() {
+        Double age = studentService.getAverageAgeStudents();
+        if (age == 0) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(age);
+    }
+
+    @GetMapping("/sum")
+    public ResponseEntity<Integer> getSum() {
+        return ResponseEntity.ok(studentService.getSum());
+    }
 }

@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
 import ru.hogwarts.school.repository.FacultyRepository;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -47,4 +49,11 @@ public class FacultyService {
 
     }
 
+    public Optional<String> getBigNameOfFaculty() {
+        List<Faculty> faculties = facultyRepository.findAll();
+
+        return faculties.stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length));
+    }
 }

@@ -66,4 +66,14 @@ public class FacutyController {
     public List<Faculty> collorsOfFaculty(@RequestParam String collor) {
         return facultyService.facultyCollor(collor);
     }
+
+
+    @GetMapping("getBigNameOfFaculty")
+    public ResponseEntity<String> getBigNameOfFaculty() {
+        String biggestName = String.valueOf(facultyService.getBigNameOfFaculty());
+        if (biggestName.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(biggestName);
+    }
 }
