@@ -105,10 +105,6 @@
 		<version>2.2.15</version>
 	</dependency>
 	<dependency>
-		<groupId>org.springframework.cloud</groupId>
-		<artifactId>spring-cloud-starter-bootstrap</artifactId>
-	</dependency>
-	<dependency>
 		<groupId>pro.sky</groupId>
 		<artifactId>demo2</artifactId>
 		<version>0.0.1-SNAPSHOT</version>

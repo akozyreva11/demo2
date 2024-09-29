@@ -1,6 +1,5 @@
 package ru.hogwarts.school.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -8,7 +7,7 @@ import java.util.Objects;
 @Entity(name = "students")
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String name;
     private Integer age;
@@ -24,16 +23,6 @@ public class Student {
         this.id = id;
         this.name = name;
         this.age = age;
-    }
-
-    @JsonProperty
-    public Faculty getFaculty() {
-        return faculty;
-    }
-
-    @JsonProperty
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
     }
 
     public Long getId() {
