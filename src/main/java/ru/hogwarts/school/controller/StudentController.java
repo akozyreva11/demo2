@@ -93,4 +93,14 @@ public class StudentController {
         }
         return ResponseEntity.ok(lastStudents);
     }
+    @GetMapping ("print-parallel")
+    public ResponseEntity <String> printParallel () {
+        studentService.printParallel ();
+        return ResponseEntity.ok("Имена в консоль");
+    };
+    @GetMapping ("/print-synchronized")
+    public ResponseEntity <String> printSynchronized() {
+        studentService.printSynchronized();
+        return ResponseEntity.ok("Имена в консоль");
+    }
 }
